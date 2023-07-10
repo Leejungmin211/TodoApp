@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { DarkModeProvider } from "./context/DarkModeContext";
+import "./App.css";
+import MyPage from "./pages/MyPage";
+import Root from "./pages/Root";
+import TodoPage from "./pages/TodoPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { index: true, element: <TodoPage /> },
+      { path: "/mypage", element: <MyPage /> },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DarkModeProvider>
+      <RouterProvider router={router} />
+    </DarkModeProvider>
   );
 }
 

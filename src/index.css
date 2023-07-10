@@ -1,13 +1,68 @@
+:root {
+  --color-bg-pink: #ffe3e3;
+  --color-box-shadow: rgb(250 55 55 / 10%);
+  --color-bg: #fdfffd;
+  --color-white: white;
+  --color-grey: #d1d1d1;
+  --color-text: #22243b;
+  --color-pink: #ffbebe;
+  --color-accent: #c34265;
+  --color-scrollbar: #aaa7a7;
+}
+
+html.dark {
+  --color-grey: #383838;
+  --color-text: #e9e9e9;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+  font-size: 17px;
+  accent-color: var(--color-accent);
+  background-color: var(--color-bg-pink);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
 }

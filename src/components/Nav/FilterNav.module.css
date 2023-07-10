@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-pink);
+  border-bottom: 1px solid var(--color-box-shadow);
+  padding: 20px 50px;
+}
+
+.filters {
+  display: flex;
+}
+
+.filter {
+  margin: 10px;
+  font-size: 20px;
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.filter:hover,
+.filter.selected {
+  color: var(--color-accent);
+}
+
+.filter.selected::after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  border: 1px solid var(--color-accent);
+}
