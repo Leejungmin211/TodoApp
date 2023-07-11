@@ -1,9 +1,9 @@
 :root {
   --color-bg-pink: #ffe3e3;
   --color-box-shadow: rgb(250 55 55 / 10%);
-  --color-bg: #fdfffd;
-  --color-white: white;
+  --color-white: #fdfffd;
   --color-grey: #d1d1d1;
+  --color-light-gray: rgb(177, 177, 177);
   --color-text: #22243b;
   --color-pink: #ffbebe;
   --color-accent: #c34265;
@@ -24,7 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
   height: 100vh;
-  font-size: 17px;
+  font-size: 13px;
   accent-color: var(--color-accent);
   background-color: var(--color-bg-pink);
 }
