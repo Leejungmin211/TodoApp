@@ -44,6 +44,7 @@ function readTodo() {
   const todos = localStorage.getItem("todos");
   return todos ? JSON.parse(todos) : [];
 }
+
 function getFilterList(todos, filter) {
   if (filter === "All") {
     return todos;
