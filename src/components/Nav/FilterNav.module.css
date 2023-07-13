@@ -14,7 +14,7 @@
 .filter {
   margin: 10px 30px 10px 0px;
   font-size: 20px;
-  color: var(--color-white);
+  color: var(--color-text-white);
   font-weight: bold;
 }
 
