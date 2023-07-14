@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
 
-export default function TodoList({ filter }) {
-  const [todos, setTodos] = useState(readTodo);
-
+export default function TodoList({ filter, todos, setTodos }) {
   const handleAdd = (todo) => {
     setTodos([...todos, todo]);
   };
@@ -23,7 +21,7 @@ export default function TodoList({ filter }) {
   const filtered = getFilterList(todos, filter);
   return (
     <section className={styles.wrapper}>
-      <ul>
+      <ul className={styles.ul}>
         {filtered.map((item) => {
           return (
             <Todo
@@ -38,11 +36,6 @@ export default function TodoList({ filter }) {
       <AddTodo handleAdd={handleAdd} />
     </section>
   );
-}
-
-function readTodo() {
-  const todos = localStorage.getItem("todos");
-  return todos ? JSON.parse(todos) : [];
 }
 
 function getFilterList(todos, filter) {

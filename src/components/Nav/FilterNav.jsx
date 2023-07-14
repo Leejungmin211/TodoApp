@@ -1,6 +1,8 @@
 import styles from "./FilterNav.module.css";
 
-export default function FilterNav({ filters, filter, setFilter }) {
+export default function FilterNav({ filters, filter, setFilter, todos }) {
+  const completedTodo = todos.filter((todo) => todo.status === "Completed");
+
   return (
     <nav className={styles.nav}>
       <ul className={styles.filters}>
@@ -19,6 +21,9 @@ export default function FilterNav({ filters, filter, setFilter }) {
           );
         })}
       </ul>
+      <p className={styles.todo}>
+        {`${completedTodo.length} / ${todos.length}`}
+      </p>
     </nav>
   );
 }

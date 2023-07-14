@@ -29,3 +29,9 @@
   margin-top: 5px;
   border: 2px solid var(--color-accent);
 }
+
+.todo {
+  font-size: 20px;
+  color: var(--color-accent);
+  font-weight: bold;
+}
