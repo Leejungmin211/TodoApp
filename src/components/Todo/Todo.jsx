@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import useTodo from "../../hooks/useTodo";
 import styles from "./Todo.module.css";
 
-export default function Todo({ todo, onUpdate, onDelete }) {
-  const { id, text, status } = todo;
+export default function Todo({ todo, todo: { id, text, status } }) {
+  const { addUpdateItem, removeItem } = useTodo();
   const [isEdit, setIsEdit] = useState(false);
   const [editText, setEditText] = useState(text);
   const inputRef = useRef(null);
@@ -19,10 +20,10 @@ export default function Todo({ todo, onUpdate, onDelete }) {
 
   const handleChecked = (e) => {
     const status = e.target.checked ? "Completed" : "Active";
-    onUpdate({ ...todo, status });
+    addUpdateItem.mutate({ ...todo, status });
   };
   const handleDelete = () => {
-    onDelete(todo);
+    removeItem.mutate(id);
   };
   const handelEdit = () => {
     setIsEdit(true);
@@ -31,7 +32,7 @@ export default function Todo({ todo, onUpdate, onDelete }) {
     setEditText(e.target.value);
   };
   const handleSave = () => {
-    onUpdate({ ...todo, text: editText });
+    addUpdateItem.mutate({ ...todo, text: editText });
     setIsEdit(false);
   };
 

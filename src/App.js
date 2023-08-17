@@ -4,6 +4,7 @@ import "./App.css";
 import MyPage from "./pages/MyPage";
 import Root from "./pages/Root";
 import TodoPage from "./pages/TodoPage";
+import { ModalContextProvider } from "./context/ModalContext";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <DarkModeProvider>
-      <RouterProvider router={router} />
+      <ModalContextProvider>
+        <RouterProvider router={router} />
+      </ModalContextProvider>
     </DarkModeProvider>
   );
 }

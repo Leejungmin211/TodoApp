@@ -4,11 +4,20 @@
   align-items: center;
   height: 100%;
   padding: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  width: 110px;
-  height: 66px;
+  width: 105px;
+  height: 61px;
+  margin-right: 40px;
 }
 
 .logo path {
@@ -16,35 +25,20 @@
 }
 
 .list {
-  margin: 0 30px;
-  font-weight: bold;
+  margin: 0 17px;
   transition: 0.3s ease-in-out;
 }
 
 .list:hover {
-  color: var(--color-accent);
+  color: var(--color-orange);
 }
 
 .buttonWrapper {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 15px;
 }
 
 .button {
   cursor: pointer;
-}
-
-.loginButton {
-  border: 2px solid var(--color-pink);
-  border-radius: 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-}
-
-.loginButton:hover {
-  background-color: var(--color-pink);
-  color: var(--color-accent);
 }

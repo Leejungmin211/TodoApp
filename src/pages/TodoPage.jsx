@@ -1,26 +1,46 @@
 import { useState } from "react";
+import Calendar from "react-calendar";
 import FilterNav from "../components/Nav/FilterNav";
 import TodoList from "../components/TodoList/TodoList";
+import styles from "./TodoPage.module.css";
+import dayjs from "dayjs";
+import "./Calendar.css";
 
 export default function TodoPage() {
   const filters = ["All", "Active", "Completed"];
-  const [todos, setTodos] = useState(readTodo);
   const [filter, setFilter] = useState(filters[0]);
+  const [value, setValue] = useState(new Date());
+  const today = formattedDate(value);
+  const [selectedDate, setselectedDate] = useState(today);
+
+  const handleDateChange = (date) => {
+    setValue(date);
+    const changedDate = date && formattedDate(date);
+    setselectedDate(changedDate);
+  };
 
   return (
-    <>
-      <FilterNav
-        filters={filters}
-        todos={todos}
-        filter={filter}
-        setFilter={setFilter}
-      />
-      <TodoList filter={filter} todos={todos} setTodos={setTodos} />
-    </>
+    <main className={styles.mainWrapper}>
+      <div>
+        <Calendar
+          onChange={handleDateChange}
+          value={value}
+          tileContent={() => {}}
+        />
+      </div>
+      <section className={styles.bodywrapper}>
+        <FilterNav
+          filters={filters}
+          filter={filter}
+          setFilter={setFilter}
+          selectedDate={selectedDate}
+        />
+        <TodoList filter={filter} selectedDate={selectedDate} />
+      </section>
+    </main>
   );
 }
 
-function readTodo() {
-  const todos = localStorage.getItem("todos");
-  return todos ? JSON.parse(todos) : [];
+function formattedDate(date) {
+  return dayjs(date).format("YYYY년 M월 D일");
 }

@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import useTodo from "../../hooks/useTodo";
 import styles from "./AddTodo.module.css";
 
-export default function AddTodo({ handleAdd }) {
+export default function AddTodo({ selectedDate }) {
+  const { addUpdateItem } = useTodo();
   const [text, setText] = useState("");
+
   const handleText = (e) => {
     setText(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim().length === 0) return;
-    handleAdd({ id: uuidv4(), text, status: "Active" });
+    addUpdateItem.mutate({
+      id: uuidv4(),
+      text,
+      status: "Active",
+      date: selectedDate,
+    });
     setText("");
   };
 

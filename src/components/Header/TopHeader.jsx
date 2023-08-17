@@ -1,59 +1,60 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./TopHeader.module.css";
 import { ReactComponent as Logo } from "../../images/logo.svg";
 import { ReactComponent as Moon } from "../../images/moon.svg";
 import { ReactComponent as Sun } from "../../images/sun.svg";
 import { useDarkMode } from "../../context/DarkModeContext";
-import { useState } from "react";
-import LoginModal from "../login/LoginModal";
 import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from "../../context/ModalContext";
+import LoginModal from "../login/LoginModal";
+import Button from "../../components/ui/Button";
 
 export default function TopHeader() {
   const { user, logout } = useAuthContext();
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setLoginModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setLoginModalOpen(false);
+  const { loginModalOpen, openModal } = useModalContext();
+  const activeStyle = {
+    color: "var(--color-accent)",
   };
 
   return (
     <header className={styles.header}>
-      <Link to="/">
-        <Logo className={styles.logo} />
-      </Link>
-      <div>
-        <Link to="/" className={styles.list}>
-          CALENDAR
+      <div className={styles.link}>
+        <Link to="/">
+          <Logo className={styles.logo} />
         </Link>
-        <Link to="/" className={styles.list}>
-          TODO LIST
-        </Link>
-        <Link to="/mypage" className={styles.list}>
-          ABOUT ME
-        </Link>
+        <NavLink
+          to="/"
+          className={styles.list}
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+        >
+          TODO
+        </NavLink>
+        <NavLink
+          to="/mypage"
+          className={styles.list}
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+        >
+          DIARY
+        </NavLink>
       </div>
       <div className={styles.buttonWrapper}>
         {!user && (
-          <button className={styles.loginButton} onClick={handleOpenModal}>
-            LOGIN
-          </button>
+          <span onClick={openModal}>
+            <Button text="LOGIN" />
+          </span>
         )}
         {user && (
-          <button className={styles.loginButton} onClick={logout}>
-            LOGOUT
-          </button>
+          <span onClick={logout}>
+            <Button text="LOGOUT" />
+          </span>
         )}
         <button className={styles.button} onClick={toggleDarkMode}>
           {!darkMode && <Moon className={styles.image} />}
           {darkMode && <Sun className={styles.image} />}
         </button>
       </div>
-      {loginModalOpen && <LoginModal closeModal={handleCloseModal} />}
+      {loginModalOpen && <LoginModal />}
     </header>
   );
 }

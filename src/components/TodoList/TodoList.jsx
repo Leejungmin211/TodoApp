@@ -1,46 +1,40 @@
-import { useEffect } from "react";
+import useTodo from "../../hooks/useTodo";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
 
-export default function TodoList({ filter, todos, setTodos }) {
-  const handleAdd = (todo) => {
-    setTodos([...todos, todo]);
-  };
-  const handleUpdate = (todo) => {
-    setTodos(todos.map((item) => (item.id === todo.id ? todo : item)));
-  };
-  const handleDelete = (todo) => {
-    setTodos(todos.filter((item) => item.id !== todo.id));
-  };
+export default function TodoList({ filter, selectedDate, todayDate }) {
+  const {
+    todoQuery: { isLoading, data: todos },
+  } = useTodo();
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  if (isLoading) return <p>Loading...</p>;
 
-  const filtered = getFilterList(todos, filter);
+  const filtered =
+    !isLoading && filter && getFilterList(todos, filter, selectedDate);
   return (
     <section className={styles.wrapper}>
+      {selectedDate && <p className={styles.day}>{selectedDate}</p>}
       <ul className={styles.ul}>
-        {filtered.map((item) => {
-          return (
-            <Todo
-              key={item.id}
-              todo={item}
-              onDelete={handleDelete}
-              onUpdate={handleUpdate}
-            />
-          );
-        })}
+        {filtered &&
+          filtered.map((item) => {
+            return <Todo key={item.id} todo={item} />;
+          })}
       </ul>
-      <AddTodo handleAdd={handleAdd} />
+      <AddTodo selectedDate={selectedDate} />
     </section>
   );
 }
 
-function getFilterList(todos, filter) {
-  if (filter === "All") {
-    return todos;
+function getFilterList(todos, filter, selectedDate) {
+  if (!filter || !selectedDate || !todos) {
+    return [];
   }
-  return todos.filter((todo) => todo.status === filter);
+
+  if (filter && filter === "All") {
+    return todos.filter((todo) => todo.date === selectedDate);
+  }
+  return todos.filter(
+    (todo) => todo.status === filter && todo.date === selectedDate
+  );
 }

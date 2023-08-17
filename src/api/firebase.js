@@ -5,9 +5,9 @@ import {
   GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
+  GithubAuthProvider,
 } from "firebase/auth";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
-import { v4 as uuid } from "uuid";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,14 +18,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const database = getDatabase(app);
 
 export async function login() {
-  signInWithPopup(auth, provider).catch(console.error);
+  signInWithPopup(auth, googleProvider).catch(console.error);
 }
 
-export function logout() {
+export async function loginGitHub() {
+  signInWithPopup(auth, githubProvider).catch(console.error);
+}
+
+export async function logout() {
   signOut(auth).catch(console.error);
 }
 
@@ -33,4 +38,19 @@ export function onUserStateChange(callback) {
   onAuthStateChanged(auth, (user) => {
     callback(user);
   });
+}
+
+export async function getTodo(userId) {
+  return get(ref(database, `todos/${userId}`)).then((snapshot) => {
+    const items = snapshot.val() || {};
+    return Object.values(items);
+  });
+}
+
+export async function addUpdateTodo(userId, todo) {
+  return set(ref(database, `todos/${userId}/${todo.id}`), todo);
+}
+
+export async function removeTodo(userId, todoId) {
+  return remove(ref(database, `todos/${userId}/${todoId}`));
 }

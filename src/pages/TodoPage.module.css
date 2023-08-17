@@ -1,0 +1,17 @@
+.mainWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1480px;
+}
+
+.bodywrapper {
+  width: 70%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  overflow: hidden;
+  background-color: var(--color-white);
+  border-radius: 20px;
+}
