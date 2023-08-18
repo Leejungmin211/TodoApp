@@ -2,21 +2,29 @@
   --color-bg-pink: #ffe3e3;
   --color-box-shadow: rgb(250 55 55 / 10%);
   --color-white: #fdfffd;
+  --color-light-white: rgb(253, 253, 253);
   --color-text-white: #fdfffd;
   --color-grey: #d1d1d1;
   --color-light-gray: rgb(177, 177, 177);
+  --color-6gray: #666;
+  --color-dark-gray: #555;
   --color-text: #22243b;
   --color-pink: #ffbebe;
   --color-dark-pink: #dd8b8b;
   --color-accent: #c34265;
   --color-orange: #f78f07;
   --color-scrollbar: #aaa7a7;
+  --color-modal-back: rgba(255, 255, 255, 0.6);
+  --color-box-modal-shadow: rgba(0, 0, 0, 0.1);
+  --color-box-icon-shadow: rgba(0, 0, 0, 0.05);
 }
 
 html.dark {
   --color-bg-pink: #2c2c34;
   --color-box-shadow: #282a4d;
+  --color-light-gray: rgb(109, 109, 109);
   --color-grey: #383838;
+  --color-6gray: #e9e9e9;
   --color-text: #e9e9e9;
   --color-white: #42424a;
   --color-pink: #2e3158;

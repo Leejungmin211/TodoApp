@@ -2,6 +2,7 @@ import useTodo from "../../hooks/useTodo";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
+import ClipBoard from "../../images/clipboard.png";
 
 export default function TodoList({ filter, selectedDate, todayDate }) {
   const {
@@ -16,10 +17,18 @@ export default function TodoList({ filter, selectedDate, todayDate }) {
     <section className={styles.wrapper}>
       {selectedDate && <p className={styles.day}>{selectedDate}</p>}
       <ul className={styles.ul}>
-        {filtered &&
+        {filtered && filtered.length !== 0 ? (
           filtered.map((item) => {
             return <Todo key={item.id} todo={item} />;
-          })}
+          })
+        ) : (
+          <div className={styles.imgWrapper}>
+            <img src={ClipBoard} alt="No todos" className={styles.image} />
+            <p className={styles.noTodo}>
+              오늘은 할 일이 없어요. 새로운 계획을 작성해보세요.
+            </p>
+          </div>
+        )}
       </ul>
       <AddTodo selectedDate={selectedDate} />
     </section>

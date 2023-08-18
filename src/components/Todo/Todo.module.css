@@ -7,10 +7,9 @@
   font-size: 15px;
 }
 
-.input {
+.checkbox {
   width: 20px;
   height: 20px;
-  border-radius: 5px;
 }
 
 .label {

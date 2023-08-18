@@ -8,7 +8,7 @@ export default function FilterNav({
   selectedDate,
 }) {
   const {
-    todoQuery: { isLoading, data: todos },
+    todoQuery: { data: todos },
   } = useTodo();
 
   const seletedDateTodo =
@@ -19,7 +19,6 @@ export default function FilterNav({
       (todo) => todo.status === "Completed" && todo.date === selectedDate
     );
 
-  if (isLoading) return <p>Loading...</p>;
   return (
     <nav className={styles.nav}>
       <ul className={styles.filters}>

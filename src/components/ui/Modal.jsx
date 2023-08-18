@@ -1,5 +1,6 @@
 import { useModalContext } from "../../context/ModalContext";
 import styles from "./Modal.module.css";
+import { BsX } from "react-icons/bs";
 
 export default function Modal({ children }) {
   const { closeModal } = useModalContext();
@@ -11,7 +12,7 @@ export default function Modal({ children }) {
         onClick={(e) => e.stopPropagation()}
       >
         <span className={styles.closeIcon} onClick={closeModal}>
-          x
+          <BsX />
         </span>
         {children}
       </div>
