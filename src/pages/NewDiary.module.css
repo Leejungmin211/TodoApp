@@ -1,0 +1,123 @@
+.section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 70px 70px 60px;
+  gap: 40px;
+  margin-bottom: 20px;
+  background-color: var(--color-white);
+  border-radius: 20px;
+  box-shadow: 0px 0px 6px var(--color-box-icon-shadow);
+}
+
+.imageContainer {
+  width: 370px;
+  height: 370px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--color-pink);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.pictureText {
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.urlImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 25px;
+}
+
+.textInput {
+  border: none;
+  border-bottom: 2px solid var(--color-accent);
+  padding: 5px;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.textarea {
+  margin-top: 10px;
+  padding: 7px;
+  border: 2px solid var(--color-accent);
+  border-radius: 5px;
+  resize: none;
+  color: var(--color-text);
+}
+
+.diaryImg {
+  width: 170px;
+  height: 170px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.cancel {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  transition: 0.3s ease-in-out;
+}
+
+.cancel:hover {
+  color: var(--color-orange);
+}
+
+.fileContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.fileUploader {
+  display: none;
+}
+
+.fileLabel {
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.fileLabel:hover {
+  color: var(--color-orange);
+}

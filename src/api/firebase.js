@@ -54,3 +54,19 @@ export async function addUpdateTodo(userId, todo) {
 export async function removeTodo(userId, todoId) {
   return remove(ref(database, `todos/${userId}/${todoId}`));
 }
+
+export async function getDiary(userId) {
+  return get(ref(database, `diary/${userId}`)).then((snapshot) => {
+    const items = snapshot.val() || {};
+    return Object.values(items);
+  });
+}
+
+export async function addUpdateDiary(userId, diary) {
+  console.log(diary);
+  return set(ref(database, `diary/${userId}/${diary.id}`), diary);
+}
+
+export async function removeDiary(userId, diaryId) {
+  return remove(ref(database, `todos/${userId}/${diaryId}`));
+}

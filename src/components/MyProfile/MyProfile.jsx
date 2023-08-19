@@ -53,7 +53,7 @@ export default function MyProfile() {
   const [about, setAbout] = useState("나에 대해 소개해주세요");
 
   return (
-    <div>
+    <section className={styles.section}>
       <MyInput
         type="text"
         value={name}
@@ -64,6 +64,6 @@ export default function MyProfile() {
         value={about}
         handleTextChange={(value) => setAbout(value)}
       />
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useTodo from "../../hooks/useTodo";
 import styles from "./Todo.module.css";
+import { TextButton } from "../ui/Button";
 
 export default function Todo({ todo, todo: { id, text, status } }) {
   const { addUpdateItem, removeItem } = useTodo();
@@ -61,16 +62,16 @@ export default function Todo({ todo, todo: { id, text, status } }) {
       )}
       <div>
         {isEdit ? (
-          <button className={styles.button} onClick={handleSave}>
-            저장
+          <button onClick={handleSave}>
+            <TextButton text="저장" />
           </button>
         ) : (
-          <button className={styles.button} onClick={handelEdit}>
-            수정
+          <button onClick={handelEdit}>
+            <TextButton text="수정" />
           </button>
         )}
-        <button className={styles.button} onClick={handleDelete}>
-          삭제
+        <button onClick={handleDelete}>
+          <TextButton text="삭제" />
         </button>
       </div>
     </li>

@@ -1,0 +1,32 @@
+.section {
+  width: 70%;
+  margin-bottom: 100px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diaryImage {
+  width: 70px;
+}
+
+.plusIcon {
+  width: 35px;
+  height: 35px;
+  color: var(--color-accent);
+  transition: all 0.3s ease-in-out;
+}
+
+.plusIcon:hover {
+  color: var(--color-orange);
+}

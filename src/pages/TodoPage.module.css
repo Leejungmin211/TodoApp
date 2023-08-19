@@ -1,12 +1,13 @@
 .mainWrapper {
+  width: 100%;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1480px;
 }
 
 .bodywrapper {
-  width: 70%;
+  width: 50%;
   height: 600px;
   display: flex;
   flex-direction: column;
@@ -14,4 +15,5 @@
   overflow: hidden;
   background-color: var(--color-white);
   border-radius: 20px;
+  box-shadow: 0px 0px 6px var(--color-box-icon-shadow);
 }

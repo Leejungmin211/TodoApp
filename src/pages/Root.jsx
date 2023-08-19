@@ -13,7 +13,9 @@ export default function Root() {
         <div className={styles.header}>
           <TopHeader />
         </div>
-        <Outlet />
+        <div className={styles.main}>
+          <Outlet />
+        </div>
       </AuthContextProvider>
     </QueryClientProvider>
   );

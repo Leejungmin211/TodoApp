@@ -7,7 +7,7 @@ import { useDarkMode } from "../../context/DarkModeContext";
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from "../../context/ModalContext";
 import LoginModal from "../login/LoginModal";
-import Button from "../../components/ui/Button";
+import { Button } from "../../components/ui/Button";
 
 export default function TopHeader() {
   const { user, logout } = useAuthContext();
@@ -31,7 +31,7 @@ export default function TopHeader() {
           TODO
         </NavLink>
         <NavLink
-          to="/mypage"
+          to="/diary"
           className={styles.list}
           style={({ isActive }) => (isActive ? activeStyle : null)}
         >
