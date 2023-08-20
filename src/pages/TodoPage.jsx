@@ -3,8 +3,8 @@ import Calendar from "react-calendar";
 import FilterNav from "../components/Nav/FilterNav";
 import TodoList from "../components/TodoList/TodoList";
 import styles from "./TodoPage.module.css";
-import dayjs from "dayjs";
 import "./Calendar.css";
+import { formattedDate } from "../util/date";
 
 export default function TodoPage() {
   const filters = ["All", "Active", "Completed"];
@@ -39,8 +39,4 @@ export default function TodoPage() {
       </section>
     </main>
   );
-}
-
-function formattedDate(date) {
-  return dayjs(date).format("YYYY년 M월 D일");
 }

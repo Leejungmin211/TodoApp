@@ -12,9 +12,9 @@ export default function TodoList({ filter, selectedDate, todayDate }) {
 
   if (isLoading)
     return (
-      <>
+      <div className={styles.loading}>
         <Loading />
-      </>
+      </div>
     );
 
   const filtered =

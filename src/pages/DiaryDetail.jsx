@@ -1,13 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./DiaryDetail.module.css";
-import { FaArrowLeft } from "react-icons/fa";
-import { TextButton } from "../components/ui/Button";
+import { ArrowButton } from "../components/ui/Button";
 
 export default function DiaryDetail() {
   const navigate = useNavigate();
   const {
-    state: { diaryItem: title, date, mood, url, content },
+    state: {
+      diaryItem: { title, date, mood, url, content },
+    },
   } = useLocation();
+
   return (
     <section className={styles.section}>
       <div className={styles.contentWrapper}>
@@ -16,7 +18,7 @@ export default function DiaryDetail() {
             <div className={styles.imageContainer}>
               {url && (
                 <>
-                  <img className={styles.urlImage} src={url} alt={title} />
+                  <img className={styles.urlImage} src={url} alt="url"/>
                 </>
               )}
             </div>
@@ -33,10 +35,10 @@ export default function DiaryDetail() {
         </div>
         <div className={styles.buttonContainer}>
           <div>
-            <span className={styles.cancel} onClick={() => navigate("/diary")}>
-              <FaArrowLeft />
-              <TextButton text="이전페이지로 돌아가기" />
-            </span>
+            <ArrowButton
+              text="이전페이지로 돌아가기"
+              onClick={() => navigate("/diary")}
+            />
           </div>
         </div>
       </div>

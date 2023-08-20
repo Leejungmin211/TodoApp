@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./TopHeader.module.css";
 import { ReactComponent as Logo } from "../../images/logo.svg";
 import { ReactComponent as Moon } from "../../images/moon.svg";
@@ -10,11 +10,22 @@ import LoginModal from "../login/LoginModal";
 import { Button } from "../../components/ui/Button";
 
 export default function TopHeader() {
+  const navigate = useNavigate();
   const { user, logout } = useAuthContext();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { loginModalOpen, openModal } = useModalContext();
   const activeStyle = {
     color: "var(--color-accent)",
+  };
+
+  const handleLogin = () => {
+    openModal();
+    navigate("/");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -39,16 +50,8 @@ export default function TopHeader() {
         </NavLink>
       </div>
       <div className={styles.buttonWrapper}>
-        {!user && (
-          <span onClick={openModal}>
-            <Button text="LOGIN" />
-          </span>
-        )}
-        {user && (
-          <span onClick={logout}>
-            <Button text="LOGOUT" />
-          </span>
-        )}
+        {!user && <Button text="LOGIN" onClick={handleLogin} />}
+        {user && <Button text="LOGOUT" onClick={handleLogout} />}
         <button className={styles.button} onClick={toggleDarkMode}>
           {!darkMode && <Moon className={styles.image} />}
           {darkMode && <Sun className={styles.image} />}

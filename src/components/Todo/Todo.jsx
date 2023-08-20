@@ -62,17 +62,12 @@ export default function Todo({ todo, todo: { id, text, status } }) {
       )}
       <div>
         {isEdit ? (
-          <button onClick={handleSave}>
-            <TextButton text="저장" />
-          </button>
+          <TextButton text="저장" onClick={handleSave} />
         ) : (
-          <button onClick={handelEdit}>
-            <TextButton text="수정" />
-          </button>
+          <TextButton text="수정" onClick={handelEdit} />
         )}
-        <button onClick={handleDelete}>
-          <TextButton text="삭제" />
-        </button>
+
+        <TextButton text="삭제" onClick={handleDelete} />
       </div>
     </li>
   );

@@ -1,23 +1,23 @@
 import { useState } from "react";
 import styles from "./NewDiary.module.css";
-import { Button, TextButton } from "../components/ui/Button";
+import { ArrowButton, Button } from "../components/ui/Button";
 import NoteDiary from "../images/noteDiary.png";
-import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { uploaderImage } from "../api/uploader";
 import useDiary from "../hooks/useDiary";
 import toast, { Toaster } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
-import dayjs from "dayjs";
+import { formattedTimeDate } from "../util/date";
 
 export default function NewDiary() {
   const navigate = useNavigate();
-  const todayDate = dayjs(new Date()).format("YYYY.MM.DD HH:mm:ss");
+  const todayDate = formattedTimeDate(new Date());
   const { addUpdateDiaryItem } = useDiary();
   const [diary, setDiary] = useState({});
   const [file, setFile] = useState();
   const [isUploading, setIsUploading] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  console.log(file)
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -31,10 +31,8 @@ export default function NewDiary() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isButtonClicked) {
-      return;
-    }
-
+    if (isButtonClicked) return;
+    
     setIsUploading(true);
     setIsButtonClicked(true);
     uploaderImage(file)
@@ -57,6 +55,21 @@ export default function NewDiary() {
                 navigate("/diary");
               }, 3000);
             },
+            onError: () => {
+              toast.error("업로드에 실패했습니다.", {
+                style: {
+                  marginTop: "80px",
+                  padding: "12px",
+                },
+                iconTheme: {
+                  primary: "var(--color-orange)",
+                  secondary: "#FFFAEE",
+                },
+              });
+              setIsUploading(false);
+              setIsButtonClicked(false);
+              return;
+            }
           }
         )
       )
@@ -118,7 +131,7 @@ export default function NewDiary() {
               placeholder="오늘의 감정은 어떤가요?"
               value={diary.mood ?? ""}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off" 
               required
             />
             <input
@@ -143,10 +156,7 @@ export default function NewDiary() {
         </div>
         <div className={styles.buttonContainer}>
           <div>
-            <span className={styles.cancel} onClick={() => navigate("/diary")}>
-              <FaArrowLeft />
-              <TextButton text="나가기" />
-            </span>
+            <ArrowButton text="나가기" onClick={() => navigate("/diary")} />
           </div>
           <Button
             text={isUploading ? "업로드중" : "등록하기"}

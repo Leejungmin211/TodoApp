@@ -24,3 +24,14 @@
 .textButton:hover {
   color: var(--color-orange);
 }
+
+.cancel {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  transition: 0.3s ease-in-out;
+}
+
+.cancel:hover {
+  color: var(--color-orange);
+}
