@@ -27,7 +27,7 @@ export default function LoginModal() {
         <h1>DAILY PLANNER</h1>
       </div>
       <div className={styles.oauthContainer}>
-        <p>소셜 계정으로 로그인</p>
+        <p className={styles.text}>소셜 계정으로 로그인</p>
         <div className={styles.oauthWrapper}>
           <button className={styles.oauthButton} onClick={handleGoogleLogin}>
             <img src={GoogleLogo} alt="GoogleLogo" className={styles.logo} />

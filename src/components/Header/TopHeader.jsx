@@ -5,7 +5,7 @@ import { ReactComponent as Moon } from "../../images/moon.svg";
 import { ReactComponent as Sun } from "../../images/sun.svg";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { useAuthContext } from "../../context/AuthContext";
-import { useModalContext } from "../../context/ModalContext";
+import { useModalContext, ModalTypes } from "../../context/ModalContext";
 import LoginModal from "../login/LoginModal";
 import { Button } from "../../components/ui/Button";
 
@@ -13,13 +13,13 @@ export default function TopHeader() {
   const navigate = useNavigate();
   const { user, logout } = useAuthContext();
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const { loginModalOpen, openModal } = useModalContext();
+  const { modalState, openModal } = useModalContext();
   const activeStyle = {
     color: "var(--color-accent)",
   };
 
   const handleLogin = () => {
-    openModal();
+    openModal(ModalTypes.LOGIN);
     navigate("/");
   };
 
@@ -57,7 +57,7 @@ export default function TopHeader() {
           {darkMode && <Sun className={styles.image} />}
         </button>
       </div>
-      {loginModalOpen && <LoginModal />}
+      {modalState.type === ModalTypes.LOGIN && !user && <LoginModal />}
     </header>
   );
 }

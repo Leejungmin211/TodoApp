@@ -10,7 +10,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-p {
+.text {
   margin-bottom: 15px;
   font-size: 15px;
   font-weight: 500;
@@ -18,11 +18,12 @@ p {
 }
 
 .oauthContainer {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-light-white);
+  background-color: var(--color-white);
   padding: 36px;
 }
 
@@ -52,11 +53,11 @@ p {
 }
 
 .github {
-  background: var(--color-);
-  padding: 2px;
+  background: white;
+  padding: 1px;
 }
 
 .notesImage {
-  width: 45%;
-  height: 45%;
+  width: 200px;
+  height: 200px;
 }

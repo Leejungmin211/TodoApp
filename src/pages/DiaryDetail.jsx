@@ -1,14 +1,23 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./DiaryDetail.module.css";
-import { ArrowButton } from "../components/ui/Button";
+import { ArrowButton, Button } from "../components/ui/Button";
+import { sliceDateSubstring } from "../util/date";
+import { useModalContext, ModalTypes } from "../context/ModalContext";
+import ConfirmModal from "../components/login/ConfirmModal";
 
 export default function DiaryDetail() {
   const navigate = useNavigate();
+  const { modalState, openModal } = useModalContext();
   const {
     state: {
-      diaryItem: { title, date, mood, url, content },
+      diaryItem: { id, title, date, mood, url, content },
     },
   } = useLocation();
+  const sliceDate = date && sliceDateSubstring(date);
+
+  const handelDelete = () => {
+    openModal(ModalTypes.CONFIRM);
+  };
 
   return (
     <section className={styles.section}>
@@ -18,7 +27,7 @@ export default function DiaryDetail() {
             <div className={styles.imageContainer}>
               {url && (
                 <>
-                  <img className={styles.urlImage} src={url} alt="url"/>
+                  <img className={styles.urlImage} src={url} alt="url" />
                 </>
               )}
             </div>
@@ -26,22 +35,24 @@ export default function DiaryDetail() {
           <div className={styles.inputWrapper}>
             <h1 className={styles.h1}>{title}</h1>
             <div>
-              <p className={styles.dateText}>{date}</p>
-              <p className={styles.contentText}>오늘의 기분은?</p>
-              <p className={styles.contentText}>{mood}</p>
+              <p className={styles.dateText}>{sliceDate}</p>
+              <p className={styles.moodText}>mood ? {mood}</p>
             </div>
             <p className={styles.contentText}>{content}</p>
           </div>
         </div>
         <div className={styles.buttonContainer}>
-          <div>
-            <ArrowButton
-              text="이전페이지로 돌아가기"
-              onClick={() => navigate("/diary")}
-            />
+          <ArrowButton
+            text="다이어리 목록으로 돌아가기"
+            onClick={() => navigate("/diary")}
+          />
+          <div className={styles.textButton}>
+            <Button text="수정" onClick={() => navigate(`/diary/${id}/edit`)} />
+            <Button text="삭제" onClick={handelDelete} />
           </div>
         </div>
       </div>
+      {modalState.type === ModalTypes.CONFIRM && <ConfirmModal />}
     </section>
   );
 }

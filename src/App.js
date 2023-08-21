@@ -8,6 +8,7 @@ import Root from "./pages/Root";
 import TodoPage from "./pages/TodoPage";
 import { ModalContextProvider } from "./context/ModalContext";
 import DiaryDetail from "./pages/DiaryDetail";
+import EditDiary from "./pages/EditDiary";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/diary", element: <Diary /> },
       { path: "/diary/new", element: <NewDiary /> },
       { path: "/diary/:id", element: <DiaryDetail /> },
+      { path: "/diary/:id/edit", element: <EditDiary /> },
       { path: "/mypage", element: <MyPage /> },
     ],
   },

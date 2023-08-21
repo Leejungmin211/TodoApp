@@ -2,23 +2,29 @@ import { useContext } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 
+export const ModalTypes = {
+  LOGIN: "login",
+  CONFIRM: "confirm",
+};
+
 const ModalContext = createContext();
 
 export function ModalContextProvider({ children }) {
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [modalState, setModalState] = useState({ type: null, isOpen: false });
 
-  const openModal = () => {
-    setLoginModalOpen(true);
+  const openModal = (modalType) => {
+    setModalState({ type: modalType, isOpen: true });
   };
 
-  const closeModal = () => {
-    setLoginModalOpen(false);
+  const closeModal = (modalType) => {
+    setModalState({ type: modalType, isOpen: false });
   };
+
   return (
     <ModalContext.Provider
       value={{
-        loginModalOpen,
-        setLoginModalOpen,
+        modalState,
+        setModalState,
         openModal,
         closeModal,
       }}

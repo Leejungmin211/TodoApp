@@ -1,23 +1,30 @@
 import { useState } from "react";
 import styles from "./NewDiary.module.css";
 import { ArrowButton, Button } from "../components/ui/Button";
-import NoteDiary from "../images/noteDiary.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { uploaderImage } from "../api/uploader";
 import useDiary from "../hooks/useDiary";
 import toast, { Toaster } from "react-hot-toast";
-import { v4 as uuidv4 } from "uuid";
-import { formattedTimeDate } from "../util/date";
+import { useEffect } from "react";
 
 export default function NewDiary() {
   const navigate = useNavigate();
-  const todayDate = formattedTimeDate(new Date());
+  const { id } = useParams();
+  const {
+    diaryIdQuery: { data: diaryData },
+  } = useDiary(id);
   const { addUpdateDiaryItem } = useDiary();
   const [diary, setDiary] = useState({});
   const [file, setFile] = useState();
   const [isUploading, setIsUploading] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  console.log(file);
+  console.log(diaryData);
+
+  useEffect(() => {
+    if (diaryData) {
+      setDiary(diaryData);
+    }
+  }, [diaryData, id]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -28,60 +35,55 @@ export default function NewDiary() {
     setDiary((diary) => ({ ...diary, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isButtonClicked) return;
 
     setIsUploading(true);
     setIsButtonClicked(true);
-    uploaderImage(file)
-      .then((url) =>
-        addUpdateDiaryItem.mutate(
-          { ...diary, id: uuidv4(), date: todayDate, url },
+
+    const updateData = file
+      ? { ...diary, url: await uploaderImage(file) }
+      : diary;
+
+    addUpdateDiaryItem.mutate(updateData, {
+      onSuccess: () => {
+        toast.success("다이어리가 수정되었습니다.", {
+          style: {
+            fontSize: "15px",
+            marginTop: "80px",
+            padding: "12px",
+          },
+          iconTheme: {
+            primary: "var(--color-orange)",
+            secondary: "#FFFAEE",
+          },
+        });
+        setTimeout(() => {
+          navigate("/diary");
+        }, 3000);
+      },
+      onError: () => {
+        toast.error(
+          "업로드에 실패했습니다. 모든 내용이 첨부되었는지 확인해주세요.",
           {
-            onSuccess: () => {
-              toast.success("다이어리가 등록되었습니다.", {
-                style: {
-                  fontSize: "15px",
-                  marginTop: "80px",
-                  padding: "12px",
-                },
-                iconTheme: {
-                  primary: "var(--color-orange)",
-                  secondary: "#FFFAEE",
-                },
-              });
-              setTimeout(() => {
-                navigate("/diary");
-              }, 3000);
+            style: {
+              fontSize: "15px",
+              marginTop: "80px",
+              padding: "12px",
             },
-            onError: () => {
-              toast.error(
-                "업로드에 실패했습니다. 모든 내용이 첨부되었는지 확인해주세요.",
-                {
-                  style: {
-                    fontSize: "15px",
-                    marginTop: "80px",
-                    padding: "12px",
-                  },
-                  iconTheme: {
-                    primary: "var(--color-orange)",
-                    secondary: "#FFFAEE",
-                  },
-                }
-              );
-              setIsUploading(false);
-              setIsButtonClicked(false);
-              return;
+            iconTheme: {
+              primary: "var(--color-orange)",
+              secondary: "#FFFAEE",
             },
           }
-        )
-      )
-      .finally(() => {
+        );
         setIsUploading(false);
         setIsButtonClicked(false);
-      });
+        return;
+      },
+    });
   };
 
   return (
@@ -91,16 +93,9 @@ export default function NewDiary() {
         <div className={styles.container}>
           <div>
             <div className={styles.imageContainer}>
-              {!file && (
+              {diary.url && !file && (
                 <>
-                  <img
-                    src={NoteDiary}
-                    alt="diary"
-                    className={styles.diaryImg}
-                  />
-                  <p className={styles.pictureText}>
-                    오늘의 순간을 사진으로 기록하세요.
-                  </p>
+                  <img className={styles.urlImage} src={diary.url} alt="file" />
                 </>
               )}
               {file && (
@@ -163,7 +158,7 @@ export default function NewDiary() {
             <ArrowButton text="나가기" onClick={() => navigate("/diary")} />
           </div>
           <Button
-            text={isUploading ? "업로드중" : "등록하기"}
+            text={isUploading ? "업로드중" : "수정하기"}
             disabled={isUploading && isButtonClicked}
           />
         </div>

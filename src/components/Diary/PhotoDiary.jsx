@@ -8,7 +8,6 @@ export default function PhotoDiary() {
     diaryQuery: { data: diary },
   } = useDiary();
 
-  console.log(diary);
   return (
     <section className={styles.section}>
       <ul className={styles.ul}>
@@ -18,9 +17,7 @@ export default function PhotoDiary() {
             <p className={styles.boardText}>
               하루를 사진으로 기록하는 나만의 공간
             </p>
-            <p className={styles.boardText}>
-              이미지가 없네요. 특별한 순간을 함께 만들어보세요.
-            </p>
+            <p className={styles.boardText}>특별한 순간을 함께 만들어보세요.</p>
           </div>
         )}
         {diary &&
