@@ -125,21 +125,21 @@ export default function NewDiary() {
           <div className={styles.inputWrapper}>
             <input
               type="text"
+              name="title"
+              className={styles.textInput}
+              placeholder="제목을 입력해주세요."
+              value={diary.title ?? ""}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
               name="mood"
               className={styles.textInput}
               placeholder="오늘의 감정은 어떤가요?"
               value={diary.mood ?? ""}
               onChange={handleChange}
               autoComplete="off"
-              required
-            />
-            <input
-              type="text"
-              name="title"
-              className={styles.textInput}
-              placeholder="제목을 입력해주세요."
-              value={diary.title ?? ""}
-              onChange={handleChange}
               required
             />
             <textarea
