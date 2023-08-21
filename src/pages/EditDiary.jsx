@@ -18,7 +18,6 @@ export default function NewDiary() {
   const [file, setFile] = useState();
   const [isUploading, setIsUploading] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  console.log(diaryData);
 
   useEffect(() => {
     if (diaryData) {

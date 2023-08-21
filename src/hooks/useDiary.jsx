@@ -8,7 +8,6 @@ import {
 import { useAuthContext } from "../context/AuthContext";
 
 export default function useDiary(id) {
-  console.log(id);
   const { uid } = useAuthContext();
   const queryClient = useQueryClient();
 
