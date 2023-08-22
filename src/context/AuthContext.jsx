@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
+
   useEffect(() => {
     onUserStateChange((user) => {
       setUser(user);
@@ -12,7 +13,16 @@ export function AuthContextProvider({ children }) {
   }, []);
   return (
     <AuthContext.Provider
-      value={{ user, uid: user && user.uid, login, logout, loginGitHub }}
+      value={{
+        user,
+        uid: user && user.uid,
+        displayName: user && user.displayName,
+        authEmail: user && user.email,
+        userImage: user && user.photoURL,
+        login,
+        logout,
+        loginGitHub,
+      }}
     >
       {children}
     </AuthContext.Provider>

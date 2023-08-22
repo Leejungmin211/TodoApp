@@ -11,7 +11,7 @@ import { Button } from "../../components/ui/Button";
 
 export default function TopHeader() {
   const navigate = useNavigate();
-  const { user, logout } = useAuthContext();
+  const { user, userImage, displayName, logout } = useAuthContext();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { modalState, openModal } = useModalContext();
   const activeStyle = {
@@ -50,6 +50,14 @@ export default function TopHeader() {
         </NavLink>
       </div>
       <div className={styles.buttonWrapper}>
+        {user && (
+          <img
+            className={styles.myImage}
+            src={userImage}
+            alt={displayName}
+            onClick={() => navigate("/mypage")}
+          />
+        )}
         {!user && <Button text="LOGIN" onClick={handleLogin} />}
         {user && <Button text="LOGOUT" onClick={handleLogout} />}
         <button className={styles.button} onClick={toggleDarkMode}>

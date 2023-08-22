@@ -25,6 +25,7 @@
   height: 35px;
   color: var(--color-accent);
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .plusIcon:hover {
