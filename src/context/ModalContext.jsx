@@ -5,6 +5,7 @@ import { createContext } from "react";
 export const ModalTypes = {
   LOGIN: "login",
   CONFIRM: "confirm",
+  DELETE_USER: "deleteUser",
 };
 
 const ModalContext = createContext();

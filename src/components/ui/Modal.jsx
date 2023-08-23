@@ -10,6 +10,8 @@ export default function Modal({ children }) {
       closeModal();
     } else if (modalState.type === ModalTypes.CONFIRM) {
       closeModal();
+    } else if (modalState.type === ModalTypes.DELETE_USER) {
+      closeModal();
     }
   };
 

@@ -6,6 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
   GithubAuthProvider,
+  deleteUser,
 } from "firebase/auth";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
 
@@ -38,6 +39,12 @@ export function onUserStateChange(callback) {
   onAuthStateChanged(auth, (user) => {
     callback(user);
   });
+}
+
+export async function deleteAuthUser() {
+  const user = auth.currentUser;
+  console.log(user);
+  deleteUser(user).catch(console.error);
 }
 
 export async function getTodo(userId) {
@@ -80,4 +87,15 @@ export async function addUpdateDiary(userId, diary) {
 
 export async function removeDiary(userId, diaryId) {
   return remove(ref(database, `diary/${userId}/${diaryId}`));
+}
+
+export async function getUser(userId) {
+  return get(ref(database, `members/${userId}`)).then((snapshot) => {
+    const items = snapshot.val() || {};
+    return items;
+  });
+}
+
+export async function addUpdateUser(userId, user) {
+  return set(ref(database, `members/${userId}`), user);
 }

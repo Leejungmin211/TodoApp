@@ -3,7 +3,7 @@ import styles from "./DiaryDetail.module.css";
 import { ArrowButton, Button } from "../components/ui/Button";
 import { sliceDateSubstring } from "../util/date";
 import { useModalContext, ModalTypes } from "../context/ModalContext";
-import ConfirmModal from "../components/login/ConfirmModal";
+import ConfirmModal from "../components/Modal/ConfirmModal";
 
 export default function DiaryDetail() {
   const navigate = useNavigate();
@@ -52,7 +52,12 @@ export default function DiaryDetail() {
           </div>
         </div>
       </div>
-      {modalState.type === ModalTypes.CONFIRM && <ConfirmModal />}
+      {modalState.type === ModalTypes.CONFIRM && (
+        <ConfirmModal
+          text="게시물을 정말로 삭제하시겠습니까?"
+          type="deletePost"
+        />
+      )}
     </section>
   );
 }
