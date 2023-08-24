@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useAuthContext } from "../../context/AuthContext";
-import { useModalContext } from "../../context/ModalContext";
+import { useModalContext, ModalTypes } from "../../context/ModalContext";
 import useTodo from "../../hooks/useTodo";
 import styles from "./AddTodo.module.css";
 import LoginModal from "../login/LoginModal";
 
 export default function AddTodo({ selectedDate }) {
   const { user } = useAuthContext();
-  const { loginModalOpen, openModal } = useModalContext();
+  const { modalState, openModal } = useModalContext();
   const { addUpdateItem } = useTodo();
   const [text, setText] = useState("");
 
   const handleText = (e) => {
     setText(e.target.value);
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim().length === 0) return;
@@ -25,6 +26,12 @@ export default function AddTodo({ selectedDate }) {
       date: selectedDate,
     });
     setText("");
+  };
+
+  const handleAddButton = () => {
+    if (!user) {
+      openModal(ModalTypes.LOGIN);
+    }
   };
 
   return (
@@ -41,11 +48,11 @@ export default function AddTodo({ selectedDate }) {
           Add
         </button>
       ) : (
-        <button className={styles.button} onClick={openModal}>
+        <button className={styles.button} onClick={handleAddButton}>
           Add
         </button>
       )}
-      {loginModalOpen && <LoginModal />}
+      {modalState.type === ModalTypes.LOGIN && !user && <LoginModal />}
     </form>
   );
 }

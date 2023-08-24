@@ -7,7 +7,6 @@ export function groupedTodosByDate(todos) {
     groupedTodos[todoDate].push(todo);
     return groupedTodos;
   }, {});
-
   return Object.values(totalTodoValue);
 }
 
@@ -20,4 +19,16 @@ export function groupedCompletedTodos(todos) {
     }
     return count;
   }, 0);
+}
+
+export function groupedCompletedTodosByDate(todos) {
+  return todos.reduce((completedDates, todo) => {
+    const completedSameDateTodos = todo.filter((t) => t.status === "Completed");
+    if (todo.length === completedSameDateTodos.length) {
+      console.log(todo)
+      const todoDate = todo[0].date;
+      completedDates.push(todoDate);
+    }
+    return completedDates;
+  }, []);
 }

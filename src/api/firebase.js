@@ -43,7 +43,6 @@ export function onUserStateChange(callback) {
 
 export async function deleteAuthUser() {
   const user = auth.currentUser;
-  console.log(user);
   deleteUser(user).catch(console.error);
 }
 
@@ -60,6 +59,10 @@ export async function addUpdateTodo(userId, todo) {
 
 export async function removeTodo(userId, todoId) {
   return remove(ref(database, `todos/${userId}/${todoId}`));
+}
+
+export async function userRemoveTodo(userId) {
+  return remove(ref(database, `todos/${userId}`));
 }
 
 export async function getDiary(userId) {
@@ -89,6 +92,10 @@ export async function removeDiary(userId, diaryId) {
   return remove(ref(database, `diary/${userId}/${diaryId}`));
 }
 
+export async function userRemoveDiary(userId) {
+  return remove(ref(database, `diary/${userId}`));
+}
+
 export async function getUser(userId) {
   return get(ref(database, `members/${userId}`)).then((snapshot) => {
     const items = snapshot.val() || {};
@@ -98,4 +105,8 @@ export async function getUser(userId) {
 
 export async function addUpdateUser(userId, user) {
   return set(ref(database, `members/${userId}`), user);
+}
+
+export async function removeUser(userId) {
+  return remove(ref(database, `members/${userId}`));
 }

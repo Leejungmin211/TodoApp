@@ -45,7 +45,6 @@ function getFilterList(todos, filter, selectedDate) {
   if (!filter || !selectedDate || !todos) {
     return [];
   }
-
   if (filter && filter === "All") {
     return todos.filter((todo) => todo.date === selectedDate);
   }

@@ -5,6 +5,12 @@ import TodoList from "../components/TodoList/TodoList";
 import styles from "./TodoPage.module.css";
 import "./Calendar.css";
 import { formattedDate } from "../util/date";
+import useTodo from "../hooks/useTodo";
+import {
+  groupedTodosByDate,
+  groupedCompletedTodosByDate,
+} from "../util/todoArray";
+import SmileStar from "../images/smileStar.png";
 
 export default function TodoPage() {
   const filters = ["All", "Active", "Completed"];
@@ -12,6 +18,12 @@ export default function TodoPage() {
   const [value, setValue] = useState(new Date());
   const today = formattedDate(value);
   const [selectedDate, setselectedDate] = useState(today);
+  const {
+    todoQuery: { data: todos },
+  } = useTodo();
+  const groupedTodos = todos && groupedTodosByDate(todos);
+  const completedTodos =
+    groupedTodos && groupedCompletedTodosByDate(groupedTodos);
 
   const handleDateChange = (date) => {
     setValue(date);
@@ -25,7 +37,22 @@ export default function TodoPage() {
         <Calendar
           onChange={handleDateChange}
           value={value}
-          tileContent={() => {}}
+          tileContent={(date, view) => {
+            if (
+              completedTodos &&
+              completedTodos.find((day) => day === formattedDate(date.date))
+            ) {
+              return (
+                <div className={styles.calendarContent}>
+                  <img
+                    className={styles.calendarIcon}
+                    src={SmileStar}
+                    alt="star"
+                  />
+                </div>
+              );
+            }
+          }}
         />
       </div>
       <section className={styles.bodywrapper}>

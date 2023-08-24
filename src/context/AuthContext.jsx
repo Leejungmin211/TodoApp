@@ -11,13 +11,13 @@ const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
-  console.log(user);
 
   useEffect(() => {
     onUserStateChange((user) => {
       setUser(user);
     });
   }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -36,6 +36,7 @@ export function AuthContextProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
 export function useAuthContext() {
   return useContext(AuthContext);
 }

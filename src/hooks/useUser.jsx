@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { addUpdateUser, getUser } from "../api/firebase";
+import { addUpdateUser, getUser, removeUser } from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
 
 export default function useUser() {
@@ -16,5 +16,11 @@ export default function useUser() {
     },
   });
 
-  return { userQuery, addUpdatedUserData };
+  const removeUserData = useMutation(() => removeUser(uid), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["members", uid]);
+    },
+  });
+
+  return { userQuery, addUpdatedUserData, removeUserData };
 }

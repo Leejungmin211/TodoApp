@@ -1,5 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { addUpdateTodo, getTodo, removeTodo } from "../api/firebase";
+import {
+  addUpdateTodo,
+  getTodo,
+  removeTodo,
+  userRemoveTodo,
+} from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
 
 export default function useTodo() {
@@ -21,5 +26,12 @@ export default function useTodo() {
       queryClient.invalidateQueries(["todos", uid]);
     },
   });
-  return { todoQuery, addUpdateItem, removeItem };
+
+  const removeUserItem = useMutation(() => userRemoveTodo(uid), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todos", uid]);
+    },
+  });
+
+  return { todoQuery, addUpdateItem, removeItem, removeUserItem };
 }

@@ -9,11 +9,13 @@ import TodoPage from "./pages/TodoPage";
 import { ModalContextProvider } from "./context/ModalContext";
 import DiaryDetail from "./pages/DiaryDetail";
 import EditDiary from "./pages/EditDiary";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <NotFound />,
     children: [
       { index: true, element: <TodoPage /> },
       { path: "/diary", element: <Diary /> },

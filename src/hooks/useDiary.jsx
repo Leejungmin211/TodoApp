@@ -4,6 +4,7 @@ import {
   removeDiary,
   getDiary,
   getIdDiary,
+  userRemoveDiary,
 } from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
 
@@ -37,5 +38,18 @@ export default function useDiary(id) {
       queryClient.invalidateQueries(["diary", uid]);
     },
   });
-  return { diaryQuery, diaryIdQuery, addUpdateDiaryItem, removeDiaryItem };
+
+  const removeUserDiaryItem = useMutation(() => userRemoveDiary(uid), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["diary", uid]);
+    },
+  });
+
+  return {
+    diaryQuery,
+    diaryIdQuery,
+    addUpdateDiaryItem,
+    removeDiaryItem,
+    removeUserDiaryItem,
+  };
 }

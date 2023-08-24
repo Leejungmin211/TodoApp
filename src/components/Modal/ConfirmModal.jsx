@@ -6,22 +6,31 @@ import { useModalContext } from "../../context/ModalContext";
 import useDiary from "../../hooks/useDiary";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
+import useTodo from "../../hooks/useTodo";
+import useUser from "../../hooks/useUser";
 
 export default function ConfirmModal({ text, type }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { closeModal } = useModalContext();
-  const { removeDiaryItem } = useDiary();
+  const { removeUserItem } = useTodo();
+  const { removeDiaryItem, removeUserDiaryItem } = useDiary();
+  const { removeUserData } = useUser();
   const { deleteAuthUser } = useAuthContext();
+
   const handleCancel = () => {
     closeModal();
   };
+  
   const handleDelete = () => {
     if (type === "deletePost" && location.state?.diaryItem?.id) {
       removeDiaryItem.mutate(location.state.diaryItem.id);
       navigate("/diary");
     } else if (type === "deleteUser") {
       deleteAuthUser();
+      removeUserItem.mutate();
+      removeUserDiaryItem.mutate();
+      removeUserData.mutate();
       navigate("/");
     }
     closeModal();

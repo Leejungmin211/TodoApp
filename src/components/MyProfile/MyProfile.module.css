@@ -72,3 +72,18 @@
   background-color: var(--color-orange);
   border-radius: 10px;
 }
+
+.validContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  color: var(--color-accent);
+  margin-top: -15px;
+  font-size: 15px;
+}
+
+.validIcon {
+  width: 20px;
+  height: 20px;
+}

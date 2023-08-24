@@ -3,9 +3,23 @@ import styles from "./Diary.module.css";
 import DiaryImage from "../images/diary.png";
 import { TbSquareRoundedPlus } from "react-icons/tb";
 import PhotoDiary from "../components/Diary/PhotoDiary";
+import { useAuthContext } from "../context/AuthContext";
+import LoginModal from "../components/login/LoginModal";
+import { useModalContext, ModalTypes } from "../context/ModalContext";
 
 export default function Diary() {
   const navigate = useNavigate();
+  const { modalState, openModal } = useModalContext();
+  const { user } = useAuthContext();
+
+  const handleAddButton = () => {
+    if (!user) {
+      navigate("/");
+      openModal(ModalTypes.LOGIN);
+    } else {
+      navigate("/diary/new");
+    }
+  };
 
   return (
     <section className={styles.section}>
@@ -16,11 +30,11 @@ export default function Diary() {
         </div>
         <TbSquareRoundedPlus
           className={styles.plusIcon}
-          onClick={() => navigate("/diary/new")}
+          onClick={handleAddButton}
         />
       </div>
       <PhotoDiary />
-      {/* <p>이미지로 남기는 나만의 하루</p> */}
+      {modalState.type === ModalTypes.LOGIN && !user && <LoginModal />}
     </section>
   );
 }

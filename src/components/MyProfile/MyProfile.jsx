@@ -12,16 +12,16 @@ import {
 import useUser from "../../hooks/useUser";
 import { useModalContext, ModalTypes } from "../../context/ModalContext";
 import ConfirmModal from "../Modal/ConfirmModal";
+import { isValidEmail } from "../../util/vaild";
+import { PiWarningCircleFill } from "react-icons/pi";
 
 export default function MyProfile() {
   const {
     todoQuery: { data: todos },
   } = useTodo();
-
   const {
     diaryQuery: { data: diary },
   } = useDiary();
-
   const {
     userQuery: { data: user },
     addUpdatedUserData,
@@ -31,9 +31,11 @@ export default function MyProfile() {
   const [isNameEdit, setIsNameEdit] = useState(false);
   const [isEmailEdit, setIsEmailEdit] = useState(false);
   const [isAboutEdit, setIsAboutEdit] = useState(false);
+  const [validEmailText, setValidEmailText] = useState("");
   const [userData, setUserData] = useState({
-    name: user ? user.name : displayName,
-    about: user ? user.about : "나의 다짐을 적어주세요",
+    name: "",
+    email: "",
+    about: "",
   });
   const totalTodoCreationDays = todos && groupedTodosByDate(todos);
   const completedTodoCount =
@@ -56,6 +58,14 @@ export default function MyProfile() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "email") {
+      if (value && !isValidEmail(value)) {
+        setValidEmailText("유효한 이메일 주소를 입력해주세요.");
+      } else {
+        setUserData({ ...userData, [name]: value });
+        setValidEmailText("");
+      }
+    }
     setUserData({ ...userData, [name]: value });
   };
 
@@ -72,6 +82,9 @@ export default function MyProfile() {
   };
 
   const handleSave = () => {
+    if (isEmailEdit && !isValidEmail(userData.email)) {
+      return;
+    }
     addUpdatedUserData.mutate({ ...userData });
     setIsNameEdit(false);
     setIsAboutEdit(false);
@@ -90,7 +103,7 @@ export default function MyProfile() {
                   className={styles.input}
                   type="text"
                   name="name"
-                  value={userData.name}
+                  value={userData.name ?? ""}
                   ref={inputRef}
                   onChange={handleChange}
                 />
@@ -105,6 +118,7 @@ export default function MyProfile() {
               </>
             )}
           </div>
+
           <div className={styles.editInput}>
             {isEmailEdit ? (
               <div>
@@ -112,7 +126,7 @@ export default function MyProfile() {
                   className={styles.input}
                   type="email"
                   name="email"
-                  value={userData.email}
+                  value={userData.email ?? ""}
                   ref={inputRef}
                   onChange={handleChange}
                 />
@@ -127,6 +141,12 @@ export default function MyProfile() {
               </>
             )}
           </div>
+          {validEmailText && (
+            <div className={styles.validContainer}>
+              <PiWarningCircleFill className={styles.validIcon} />
+              <p>{validEmailText}</p>
+            </div>
+          )}
           <p>
             TODO(투두 완료일/총 투두 작성일):
             <span className={styles.textStyle}>
@@ -154,7 +174,7 @@ export default function MyProfile() {
                   className={styles.input}
                   type="text"
                   name="about"
-                  value={userData.about}
+                  value={userData.about ?? ""}
                   ref={inputRef}
                   onChange={handleChange}
                 />
