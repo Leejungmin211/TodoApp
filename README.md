@@ -1,71 +1,43 @@
-# Getting Started with Create React App
+<div  align="center">
+  <img width="30%" src="https://github.com/Leejungmin211/TodoApp/blob/main/src/images/logo.svg" alt="DAILYPLANNER">
+</div>
+<h4 align="center">오늘 해야할 일과 하루의 기록을 담을 수 있는 나만의 공간</h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+- **개인프로젝트 :** DAILY PLANNER  <a href='https://sidequest.co.kr](https://merry-cobbler-502c4c.netlify.app' target='_blank'>배포링크</a>
+- **DAILY PLANNER 소개 :** 사람들과 소통하고 공유가 일상인 생활에서 하루를 정리하는 오직 나만의 공간으로 오늘 해야할 일을 정리하고 오늘 하루를 사진과 간단한 글로 기록할 수 있는 공간입니다.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### <span style=""> ⚙️ **Tools** </span>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+|                                                   Github                                                    |                                                                                       Discord                                                                                        |                                                                                   Notion                                                                                    |
+| :---------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="github logo" src="https://techstack-generator.vercel.app/github-icon.svg" width="65" height="65"> | <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <img alt="Notion logo" src="https://www.notion.so/cdn-cgi/image/format=auto,width=640,quality=100/front-static/shared/icons/notion-app-icon-3d.png" height="65" width="65"> |
 
-### `npm test`
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### <span style=""> 🖥 **Front-end** </span>
 
-### `npm run build`
+|                                                                                     Html                                                                                     |                                                                                                       CSS                                                                                                        |                                                                          JavaScript                                                                           |                                                                              React                                                                               |                                                                        Styled-<br>Components                                                                        |                                                                 axios                                                                 |                                                                                               Prittier                                                                                               |                                                                                                 esLint                                                                                                 |                                                            Reduct-toolkit                                                             |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <div style="display: flex; align-items: flex-start;"><img src="https://user-images.githubusercontent.com/111227745/210204643-4c3d065c-59ec-481d-ac13-cea795730835.png" alt="CSS" width="50" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://styled-components.com/logo.png" alt="styled-components icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://axios-http.com/assets/logo.svg" width="65" height="65"/></div> | <div style="display: flex; align-items: flex-start;"><img src="https://user-images.githubusercontent.com/81786662/210203759-1bd2d0ea-86b3-43c0-8e30-44436d73bb9f.png" width="65" height="65"/></div> | <div style="display: flex; align-items: flex-start;"><img src="https://user-images.githubusercontent.com/81786662/210204062-cb572e61-2027-4a9b-a52c-0eac83bcf703.jpeg" width="100" height="65"/></div> | <div style="display: flex; align-items: flex-start;"><img src="https://ko.redux.js.org/img/redux.svg" width="100" height="65"/></div> |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ✉️ Commit Message ✉️
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Message  | 설명                                              |
+| :------: | :------------------------------------------------ |
+|   feat   | 새로운 기능 추가                                  |
+|   init   | 프로젝트 시작, 초기화                             |
+|   fix    | 버그 수정                                         |
+|   docs   | 문서 수정                                         |
+|  style   | 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우 |
+| refactor | 코드 리팩토링                                     |
+|   test   | 테스트 코드                                       |
+|  chore   | 빌드 업무 수정, 패키지 매니저 수정                |
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# TodoApp
