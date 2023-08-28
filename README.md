@@ -12,23 +12,16 @@
 ---
 
 <br/>
-
-<p>
-<img src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/56e65563-1d71-4b89-89a3-477274bba7fa" align="center">
-</p>
-
-<br/>
-<br/>
 <br/>
 
 ## ✨ Pages
-|**HOME**|**LOGIN / SIGN IN**|
-|:---:|:---:|
-|<img width="100%" alt="첫 화면 gif" src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/831c057a-1c0f-420f-ac47-60b49fb27972"/>|<img width="100%" alt="로그인 gif" src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/37039197-08a8-467d-9207-6e35331db1f2"/>|
-|**PROJECT**|**COMMUNITY**|
-|<img width="100%" alt="마이 룸 생성 gif" src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/1d68313b-8fd1-4748-bdf3-aceb4f66f7bf"/>|<img width="100%" src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/804b62df-1ece-41e6-af35-bd47a25b2136"/>|
-|**USERS**|**MY PAGE**|
-|<img width="100%" src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/5dc3cb94-93ce-4a8c-b889-3a10061365eb"/>|<img width="100%" src="https://github.com/codestates-seb/seb43_main_032/assets/118104644/be4f5bf2-b1d9-41ac-bf6a-169a5acb70c9"/>|
+|**TODO & LOGIN**|
+|:---:|
+|<img width="80%" alt="TODO gif" src="https://github.com/Leejungmin211/TodoApp/blob/main/src/images/ezgif.com-video-to-gif%20(1).gif"/>|
+|**DIARY**|
+|<img width="80%" alt="마이 룸 생성 gif" src="https://github.com/Leejungmin211/TodoApp/blob/main/src/images/ezgif.com-video-to-gif%20(2).gif"/>|
+|**MY PAGE**|
+|<img width="80%" src="https://github.com/Leejungmin211/TodoApp/blob/main/src/images/ezgif.com-video-to-gif%20(3).gif"/>|
 
 <br />
 
