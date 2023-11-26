@@ -1,3 +1,4 @@
+# DAILY PLANNER
 <div  align="center">
   <img width="30%" src="https://github.com/Leejungmin211/TodoApp/blob/main/src/images/logo.svg" alt="DAILYPLANNER">
 </div>
